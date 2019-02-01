@@ -50,7 +50,7 @@ Optional!<br>
 <br>
 Wireframes:<br>
 <br>
-<img src=./images/mainpage.jpg">
-<img src=./images/gameboardpage.jpg">
-<img src=./images/winpages.jpg'>
-<img src=./images/lostpage.jpg'>
+<img src="./images/mainpage.jpg">
+<img src="./images/gameboardpage.jpg">
+<img src="./images/winpages.jpg">
+<img src="./images/losepage.jpg">
