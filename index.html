@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <script defer src="js/main.js"></script>
+    <title>MineSweeper</title>
+</head>
+
+<body>
+    <header>
+        <h1>MineSweeper</br><(^.^<) (>^.^)></h1>
+        <img class="boom1" src="https://f.kisscc0.com/ds/c48798969d27e1aa1419a84a0d8145c7/L4Dxd3E5UME5OGc3T5Hrd4Gye7r6kBNkOF5qkOJ1b4Psf7A0VfI0O2MAT9g9OEW6c4G1UsY4QGI2SKk6NUOzQIiCVsE2Omo7S5D5bne=/kisscc0-explosion-5b33297f4857c0.2678110715300796152963.png" height= 200px width= 100px>
+        <img class="boom2" src="https://f.kisscc0.com/ds/c48798969d27e1aa1419a84a0d8145c7/L4Dxd3E5UME5OGc3T5Hrd4Gye7r6kBNkOF5qkOJ1b4Psf7A0VfI0O2MAT9g9OEW6c4G1UsY4QGI2SKk6NUOzQIiCVsE2Omo7S5D5bne=/kisscc0-explosion-5b33297f4857c0.2678110715300796152963.png" height= 200px width= 100px>
+        <div id="player-name">Player Name: <input type="text" id="player-name-input" value="FU Schnickens"></div>
+        <div id="best-time">Best Time:</br></br><span id="previous-best">Set One!</span></div>
+        <div class="difficulty">
+            <div class="difficulty-dropdown">
+                <button class="difficulty-button">Difficulty</button>
+                <div class="difficulty-options">
+                    <div id="beginner">Beginner</div>
+                    <div id="intermediate">Intermediate</div>
+                    <div id="expert">Expert</div>
+                </div>
+            </div>    
+            <div class="custom-input">Width: <input type="number" id="width" min="1" max="1000" value="9"></div>
+            <div class="custom-input">Height: <input type="number" id="height" min="1" max="1000" value="9"></div>
+            <div class="custom-input">Mines: <input type="number" id="mines" min="1" max="1000" value="10"></div>
+        </div>
+        <button id="play">Play!</button>
+    </header>
+
+    <main>
+        <!--game board-->game bored
+    </main>
+
+    <footer>
+        <section id="win-condition">
+            <h2>Congratulations! You've Cleared The Map</h2>
+            <div id="win-animation">Animation Placeholder</div>
+            <div id="win-stats">
+                <div class="current-score">Current Score</div>
+                <div class="current-time">Play Time</dive>
+                <div class="game-parameters">Game Parameters</div>
+            </div>
+            <div class="replay">Play Again?</div>
+        </section>
+
+        <!-- <section id="win-nhs-condition">
+            //icebox
+        </section> -->
+
+        <section id="lose-condition">
+            <h2>Sorry, You Blew Up...</h2>
+            <div id="lose-animation">Animation Placeholder</div>
+            <div id="lose-stats">
+                    <div class="current-score">Current Score</div>
+                    <div class="current-time">Play Time</dive>
+                    <div class="game-parameters">Game Parameters</div>
+            </div>
+            <div class="replay">Play Again?</div>
+        </section>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,168 @@
+header {
+    background-color: olive;
+    border: solid 10px green;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: .25fr 1fr .25fr;
+    grid-template-rows: 2fr 1fr 1fr 1fr;
+    width: 50%;
+    margin: 0 auto;
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1vw;
+}
+
+h1 {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: center;
+    border-bottom: solid 3px green;
+    font-weight: bold;
+    font-size: 2.5vw;
+}
+
+.boom1 {
+    grid-column: 1;
+    grid-row: 1 / 5;
+}
+
+.boom2 {
+    grid-column: 3;
+    grid-row: 1 / 5;
+    transform: rotateY(180deg);
+}
+
+#player-name {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0 auto;
+}
+
+#player-name-input {
+    height: 20px;
+    width: 40%;
+    padding: 0;
+    margin: 0;
+    border: solid 5px green;
+    border-radius: 10px;
+    background-color: black;
+    text-align: center;
+    font-size: 1vw;
+    font-family: 'Orbitron', sans-serif;
+    color: #00C200;
+}
+
+.difficulty {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 0 auto;
+}
+
+.difficulty-dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.difficulty-button {
+    border: solid 5px green;
+    background-color: olive;
+    border-radius: 10px;
+    height: 30px;
+    font-size: 1vw;
+}
+
+.difficulty-options {
+    display: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.difficulty-options div {
+    display: block;
+    text-align: center;
+}
+
+#best-time {
+    grid-column: 2;
+    grid-row: 4;
+    margin: 0 0 25px 0;
+    text-align: center;
+}
+
+#play {
+    grid-column: 2;
+    grid-row: 4;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: -20px;
+    border: solid 5px green;
+    background-color: olive;
+    padding: 0;
+    left: 32%;
+    font-size: 1vw;
+}
+
+.custom-input {
+    display: inline;
+}
+
+.custom-input input {
+    font-size: 1vw;
+    margin: 0 10px 0 0;
+    width: 10%;
+    background-color: black;
+    border: solid 5px green;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #00C200;
+}
+
+#player-name-input:hover {
+    background-color: green;
+    color: black;
+}
+
+#play:hover {
+    background-color: green;
+}
+
+.difficulty-dropdown:hover .difficulty-options {
+    display: block;
+    background-color: green;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.difficulty-options div:hover {
+    background-color: olive;
+}
+
+.difficulty-dropdown:hover .difficulty-button {
+    background-color: #3e8e41;
+}
+
+.custom-input input:hover {
+    background-color: green;
+    color: black;
+}
+
+/*>>>>>>>> hide yo shit <<<<<<<<*/
+
+/* header {
+    display: none;
+} */
+
+main {
+    display: none;
+}
+
+#win-condition {
+    display: none;
+}
+
+#lose-condition {
+    display: none;
+}
