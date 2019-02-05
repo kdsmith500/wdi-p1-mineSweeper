@@ -6,16 +6,21 @@ const mines = document.getElementById('mines');
 
 /*----- app's state (variables) -----*/
 
+let gameBoard = [];
 
 /*----- cached element references -----*/
 
+let boardWidth = document.getElementById('width').getAttribute('value');
+let boardHeight = document.getElementById('height').getAttribute('value');
+let boardMines = document.getElementById('mines').getAttribute('value');
 
 /*----- event listeners -----*/
 
 document.getElementById('beginner').addEventListener('click', setBeginner);
 document.getElementById('intermediate').addEventListener('click', setIntermediate);
 document.getElementById('expert').addEventListener('click', setExpert);
-document.getElementById('play').addEventListener('click', playGame);
+// document.getElementById('play').addEventListener('click', createBoard);
+// document.querySelectorAll('.replay')addEventListener('click', MAKE_REPLAY_FUNCTION);
 
 /*----- functions -----*/
 
@@ -40,9 +45,19 @@ function setExpert() {
     console.log('expert');
 };
 
-function createBoard() {
-    let width = `#width.value`;
-    // let w, h, boardCell;
-    // for (w = 0; i < #width)
-    console.log(width);
-}
+// function createBoard() {
+//     let w, h, boardCell;
+//     for (w = 0; w < boardWidth; w++) {
+//         gameBoard[w] = [];
+//         for (h = 0; h < boardHeight; h++) {
+//             boardCell = document.createElement('div');
+//             let boardCellClass = document.createAttribute('class');
+//             boardCellClass.value = "hidden-cell";
+//             boardCell.setAttributeNode(boardCellClass);
+//             boardCell.appendChild();
+//             gameBoard[w][h] = gameBoard(boardCell, w, h);
+//             boardCell.data('location', {x: w, y: h});
+//         }
+//     document.innerHTML('<div class="clear-cell"></div>').appendTo(main);
+//     }
+// }

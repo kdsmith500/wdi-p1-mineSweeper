@@ -14,9 +14,18 @@
 
 <body>
     <header>
-        <h1>MineSweeper</br><(^.^<) (>^.^)></h1>
-        <img class="boom1" src="https://f.kisscc0.com/ds/c48798969d27e1aa1419a84a0d8145c7/L4Dxd3E5UME5OGc3T5Hrd4Gye7r6kBNkOF5qkOJ1b4Psf7A0VfI0O2MAT9g9OEW6c4G1UsY4QGI2SKk6NUOzQIiCVsE2Omo7S5D5bne=/kisscc0-explosion-5b33297f4857c0.2678110715300796152963.png" height= 200px width= 100px>
-        <img class="boom2" src="https://f.kisscc0.com/ds/c48798969d27e1aa1419a84a0d8145c7/L4Dxd3E5UME5OGc3T5Hrd4Gye7r6kBNkOF5qkOJ1b4Psf7A0VfI0O2MAT9g9OEW6c4G1UsY4QGI2SKk6NUOzQIiCVsE2Omo7S5D5bne=/kisscc0-explosion-5b33297f4857c0.2678110715300796152963.png" height= 200px width= 100px>
+        <div id="game-banner">
+            <span>MineSweeper</br></span>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+            <img class="boom-banner" src="images/generic-blast.png" height= 35px width= 35px>
+        </div>
+        <img class="nuke-left" src="images/nuclear-blast.png" height= 250px width= 150px>
+        <img class="nuke-right" src="images/nuclear-blast.png" height= 250px width= 150px>
         <div id="player-name">Player Name: <input type="text" id="player-name-input" value="FU Schnickens"></div>
         <div id="best-time">Best Time:</br></br><span id="previous-best">Set One!</span></div>
         <div class="difficulty">
@@ -41,14 +50,14 @@
 
     <footer>
         <section id="win-condition">
-            <h2>Congratulations! You've Cleared The Map</h2>
-            <div id="win-animation">Animation Placeholder</div>
-            <div id="win-stats">
+            <div class="end-result">Congratulations! You've Cleared The Map</div>
+            <div id="win-animation">Animation</br>Placeholder</br>WOOT!!!</div>
+            <div class="end-stats">
                 <div class="current-score">Current Score</div>
-                <div class="current-time">Play Time</dive>
+                <div class="current-time">Play Time</div>
                 <div class="game-parameters">Game Parameters</div>
             </div>
-            <div class="replay">Play Again?</div>
+            <button class="replay">Play Again?</button>
         </section>
 
         <!-- <section id="win-nhs-condition">
@@ -56,14 +65,14 @@
         </section> -->
 
         <section id="lose-condition">
-            <h2>Sorry, You Blew Up...</h2>
-            <div id="lose-animation">Animation Placeholder</div>
-            <div id="lose-stats">
-                    <div class="current-score">Current Score</div>
-                    <div class="current-time">Play Time</dive>
-                    <div class="game-parameters">Game Parameters</div>
+            <div class="end-result">Sorry, You Blew Up...</div>
+            <div id="lose-animation">Animation</br>Placeholder</br>BOOM!!!</div>
+            <div class="end-stats">
+                <div class="current-score">Current Score</div>
+                <div class="current-time">Play Time</div>
+                <div class="game-parameters">Game Parameters</div>
             </div>
-            <div class="replay">Play Again?</div>
+            <button class="replay">Play Again?</button>
         </section>
     </footer>
 </body>

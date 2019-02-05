@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 header {
     background-color: olive;
     border: solid 10px green;
@@ -5,31 +9,39 @@ header {
     display: grid;
     grid-template-columns: .25fr 1fr .25fr;
     grid-template-rows: 2fr 1fr 1fr 1fr;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     position: relative;
     font-family: 'Orbitron', sans-serif;
     font-size: 1vw;
 }
 
-h1 {
+#game-banner {
     grid-column: 2;
     grid-row: 1;
     text-align: center;
     border-bottom: solid 3px green;
     font-weight: bold;
     font-size: 2.5vw;
+    padding: 15px 0 0 0;
+    height: 80px;
 }
 
-.boom1 {
+.nuke-left {
     grid-column: 1;
     grid-row: 1 / 5;
+    bottom: 15%;
+    position: absolute;
+    left: 10px;
 }
 
-.boom2 {
+.nuke-right {
     grid-column: 3;
     grid-row: 1 / 5;
     transform: rotateY(180deg);
+    bottom: 15%;
+    position: absolute;
+    right: 10px;
 }
 
 #player-name {
@@ -100,7 +112,7 @@ h1 {
     border: solid 5px green;
     background-color: olive;
     padding: 0;
-    left: 32%;
+    left: 33.3333333%;
     font-size: 1vw;
 }
 
@@ -149,11 +161,81 @@ h1 {
     color: black;
 }
 
-/*>>>>>>>> hide yo shit <<<<<<<<*/
+section {
+    background-color: olive;
+    border: solid 10px green;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1vw;
+    text-align: center;
+}
+
+.end-result {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    margin: 10px auto;
+    font-size: 2.5vw;
+}
+
+#win-animation {
+    grid-column: 1;
+    grid-row: 2;
+    border-right: solid 5px green;
+    border-top: solid 5px green;
+    padding-top: 10px;
+}
+
+#lose-animation {
+    grid-column: 1;
+    grid-row: 2;
+    border-right: solid 5px green;
+    border-top: solid 5px green;
+    padding-top: 10px;
+}
+
+.end-stats {
+    grid-column: 2;
+    grid-row: 2;
+    border-left: solid 5px green;
+    border-top: solid 5px green;
+    padding-top: 10px;
+}
+
+.replay {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    width: 16%;
+    margin: 0 auto;
+    border: solid 10px green;
+    font-family: 'Orbitron', sans-serif;
+    background-color: olive;
+    font-size: 1vw;
+    position: absolute;
+    left: 42%;
+    bottom: -10px;
+    padding: 15px;
+}
+
+.replay:hover {
+    background-color: green;
+}
+
+
+/*>>>>>>> tesing <<<<<<<<*/
+
+main {
+    color: white;
+}
 
 /* header {
     display: none;
-} */
+}
 
 main {
     display: none;
@@ -165,4 +247,4 @@ main {
 
 #lose-condition {
     display: none;
-}
+} */
