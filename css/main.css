@@ -2,7 +2,7 @@ body {
     background-color: black;
 }
 
-header {
+#title-page {
     background-color: olive;
     border: solid 10px green;
     border-radius: 15px;
@@ -123,7 +123,6 @@ header {
 .custom-input input {
     font-size: 1vw;
     margin: 0 10px 0 0;
-    width: 10%;
     background-color: black;
     border: solid 5px green;
     border-radius: 10px;
@@ -231,11 +230,19 @@ section {
 
 main {
     color: white;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    border: outset 2px green;
+    background-color: olive;
 }
 
-/* header {
-    display: none;
+main img {
+    border: inset 2px green;
 }
+
+/* #title-page {
+    display: none;
+} */
 
 main {
     display: none;
@@ -247,4 +254,4 @@ main {
 
 #lose-condition {
     display: none;
-} */
+}
