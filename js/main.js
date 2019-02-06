@@ -27,21 +27,18 @@ function setBeginner() {
     width.value = '9';
     height.value = '9';
     mines.value = '10'; 
-    console.log('beginner');
 };
 
 function setIntermediate() {
     width.value = '16';
     height.value = '16';
     mines.value = '40';
-    console.log('intermediate'); 
 };
 
 function setExpert() {
     width.value = '16';
     height.value = '30';
     mines.value = '99';
-    console.log('expert');
 };
 
 function check(x1, y1) {
@@ -61,7 +58,7 @@ function createBoard() {
     main.style = `display: flex; width: ${w*34}px`;
     for (let i = 0; i < w*h; i++) {
         cell[i] = document.createElement('img');
-        cell[i].src = "images/generic-blast.png";
+        cell[i].src = "images/x.svg";
         cell[i].style = "height: 30px; width: 30px";
         // cell[i].addEventListener('click', click);
         cell[i].id = i;
