@@ -27,8 +27,8 @@ document.getElementById('beginner').addEventListener('click', setBeginner);
 document.getElementById('intermediate').addEventListener('click', setIntermediate);
 document.getElementById('expert').addEventListener('click', setExpert);
 document.getElementById('play').addEventListener('click', createBoard);
-replay.forEach(function(replayButton) {
-    replayButton.addEventListener('click', createBoard);
+replay.forEach(function(replayHandler) {
+    replayHandler.addEventListener('click', replayButton);
 });
 
 /*----- functions -----*/
@@ -51,6 +51,19 @@ function setExpert() {
     mines.value = '99';
 };
 
+function replayButton() {
+    winCondition.style = 'display: none;';
+    loseCondition.style = 'display: none;';
+    titlePage.style = 'display: grid;';
+}
+
+function loseSequence() {
+    setTimeout(function() {
+    main.style = 'display: none;';
+    loseCondition.style = 'display: grid;';
+    }, 10000);
+}
+
 function check(x1, y1) {
     if ((x1 >= 0) && (y1 >= 0) && (x1 <= w) && (y1 <= h))
         return board[x1+y1*w];
@@ -69,13 +82,11 @@ function createBoard() {
     board = [];
     revealed = [];
     placed = 0;
-    titlePage.style = "display: none";
-    winCondition.style = "display: none";
-    loseCondition.style = "display: none";
-    main.style = `display: flex; width: ${w*34}px`;
+    titlePage.style = "display: none;";
+    main.style = `display: flex; width: ${w*34}px;`;
     for (let i = 0; i < w*h; i++) {
         cell[i] = document.createElement('img');
-        cell[i].src = "images/x.svg";
+        cell[i].src = "images/x.png";
         cell[i].style = "height: 30px; width: 30px";
         cell[i].addEventListener('mousedown', click);
         cell[i].id = i;
@@ -105,68 +116,153 @@ function createBoard() {
 }
 
 function click(event) {
+    console.log(`${event.button}`);
     let source = event.target;
     let id = source.id;
-    if (event.which == 3) {
+    if (event.button === 2) {
         switch (picture(id)) {
             case 'x':
-                cell[id].src = 'images/f.svg';
+            console.log('flag');
+                cell[id].src = 'images/f.png';
                 remaining--;
                 break;
             case 'f':
-                cell[id].src = 'images/q.svg';
+            console.log('question mark');
+                cell[id].src = 'images/q.png';
                 remaining++;
                 break;
             case 'q':
-                cell[id].src = 'images/x.svg';
+            console.log('covered');
+                cell[id].src = 'images/x.png';
                 break;
         }
-        event.preventDefault();
+        console.log('out of switch');
     }
-    if (event.which == 1 && picture(id) != 'f') {
+    if (event.button === 0 && picture(id) != 'f' && picture(id) != 'q') {
+        console.log('left click not flag not question mark');
         if (board[id] == 'mine') {
+            console.log('mine');
+            loseSequence();
             for (i = 0; i < w*h; i++) {
                 if (board[i] == 'mine') {
-                    cell[i].src = 'images/m.svg';
+                    cell[i].src = 'images/m.png';
                 } else if (board[i] != 'mine' && picture(i) == 'f') {
                     cell[i].src = 'images/e.png';
                 }
-            } 
-        }
-    } else if (picture(id) == 'x') {
-        reveal(id);
+            }
+        } else if (picture(id) == 'x') {
+            console.log(`reveal ${id}`);
+            reveal(id);
+        } 
     }
     if (revealed == w*h - mines) {
         main.style = 'display: none;';
-        winCondition.style = 'display: block;';
+        winCondition.style = 'display: grid;';
     }
 }
 
 function reveal(index) {
-    console.log('fart');
     if (board[index] != 'mine' && picture(index) == 'x') {
         revealed++;
-        cell[index].src = 'images/' + board[index] + '.svg';
+        cell[index].src = 'images/' + board[index] + '.png';
     }
     x = index % w;
     y = Math.floor(index / w);
+    // if (board[index] == 0) {
+    //     console.log('you clicked a 0');
+    //     switch () {
+    //         case (x > 0 && picture(index - 1) == 'x'):
+    //             console.log('cell left');
+    //             reveal(index - 1);
+    //         case (x < (w - 1) && picture(index + 1) == 'x'):
+    //             console.log('cell right');
+    //             reveal(index + 1);
+    //         case (y < (h - 1) && picture(index + w) == 'x'):
+    //             console.log('cell down');
+    //             reveal(index + w);
+    //         case (y > 0 && picture(index - w) == 'x'):
+    //             console.log('cell up');
+    //             reveal(index - w);
+    //         case (x > 0 && y > 0 && picture(index - w - 1) == 'x'):
+    //             console.log('cell up-left');
+    //             reveal(index - w - 1);
+    //         case (x < (w - 1) && y < (h - 1) && picture(index + w + 1) == 'x'):
+    //             console.log('cell down-right');
+    //             reveal(index + w + 1);
+    //         case (x > 0 && y < (h - 1) && y < (h - 1) && picture(index + w - 1) == 'x'):
+    //             console.log('cell down-left');
+    //             reveal(index + w - 1);
+    //         case (x < (w - 1) && y > 0 && y < (h - 1) && picture(index - w + 1) == 'x'):
+    //             console.log('cell up-right');
+    //             reveal (index - w + 1);
+    //     }
     if (board[index] == 0) {
+        console.log('you clicked a 0');
         if (x > 0 && picture(index - 1) == 'x') {
+            console.log('cell left');
             reveal(index - 1);
-        } else if (x < (w - 1) && picture(+ index + 1) == 'x') {
-            reveal(+ index + 1);
-        } else if (y < (h - 1) && picture(+ index + w) == 'x') {
-            reveal(+ index + w);
-        } else if (y > 0 && picture(index - w) == 'x') {
-            reveal(index - w);
-        } else if (x > 0 && y > 0 && picture(index - w - 1) == 'x') {
-            reveal(index - w - 1);
-        } else if (x < (w - 1) && y < (h - 1) && picture(+ index + w + 1) == 'x') {
-            reveal(+ index + w + 1);
-        } else if (x > 0 && y < (h - 1) && y < (h - 1) && picture(+ index + w - 1) == 'x') {
-            reveal(+ index + w - 1);
-        } else if (x < (w - 1) && y > 0 && y < (h - 1) && picture(+ index - w + 1) == 'x') {
-            reveal (+ index - w + 1);
         }
+        if (x < (w - 1) && picture(index + 1) == 'x') {
+            console.log('cell right');
+            reveal(index + 1);
+        }
+        if (y < (h - 1) && picture(index + w) == 'x') {
+            console.log('cell down');
+            reveal(index + w);
+        }
+        if (y > 0 && picture(index - w) == 'x') {
+            console.log('cell up');
+            reveal(index - w);
+        }
+        if (x > 0 && y > 0 && picture(index - w - 1) == 'x') {
+            console.log('cell up-left');
+            reveal(index - w - 1);
+        }                                                   
+        if (x < (w - 1) && y < (h - 1) && picture(index + w + 1) == 'x') {
+            console.log('cell down-right');
+            reveal(index + w + 1);
+        }
+        if (x > 0 && y < (h - 1) && y < (h - 1) && picture(index + w - 1) == 'x') {
+            console.log('cell down-left');
+            reveal(index + w - 1);
+        }
+        if (x < (w - 1) && y > 0 && y < (h - 1) && picture(index - w + 1) == 'x') {
+            console.log('cell up-right');
+            reveal (index - w + 1);
+        }
+    // if (board[index] == 0) {
+    //     console.log('you clicked a 0');
+    //     if (x > 0) {
+    //         console.log('cell left');
+    //         reveal(index - 1);
+    //     }
+    //     if (x < (w - 1)) {
+    //         console.log('cell right');
+    //         reveal(index + 1);
+    //     }
+    //     if (y < (h - 1)) {
+    //         console.log('cell down');
+    //         reveal(index + w);
+    //     }
+    //     if (y > 0) {
+    //         console.log('cell up');
+    //         reveal(index - w);
+    //     }
+    //     if (x > 0 && y > 0) {
+    //         console.log('cell up-left');
+    //         reveal(index - w - 1);
+    //     }                                                   
+    //     if (x < (w - 1) && y < (h - 1)) {
+    //         console.log('cell down-right');
+    //         reveal(index + w + 1);
+    //     }
+    //     if (x > 0 && y < (h - 1) && y < (h - 1)) {
+    //         console.log('cell down-left');
+    //         reveal(index + w - 1);
+    //     }
+    //     if (x < (w - 1) && y > 0 && y < (h - 1)) {
+    //         console.log('cell up-right');
+    //         reveal (index - w + 1);
+    //     }
     }
 }
