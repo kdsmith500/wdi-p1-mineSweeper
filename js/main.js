@@ -55,6 +55,9 @@ function replayButton() {
     winCondition.style = 'display: none;';
     loseCondition.style = 'display: none;';
     titlePage.style = 'display: grid;';
+    for (let i = 0; i < w*h; i++) {
+        main.removeChild(main.childNodes[0]);
+    }
 }
 
 function loseSequence() {
@@ -70,9 +73,6 @@ function check(x1, y1) {
 }
 
 function picture(index) {
-    // console.log(cell, '1');
-    // console.log(cell[index], '2');
-    // console.log(cell[index].src, '3');
     return cell[index].src.substr(cell[index].src.length - 5, 1);
 }
 
@@ -119,32 +119,25 @@ function createBoard() {
 }
 
 function click(event) {
-    console.log(`${event.button}`);
     let source = event.target;
     let id = source.id;
     if (event.button === 2) {
         switch (picture(id)) {
             case 'x':
-                console.log('flag');
                 cell[id].src = 'images/f.png';
                 remaining--;
                 break;
             case 'f':
-                console.log('question mark');
                 cell[id].src = 'images/q.png';
                 remaining++;
                 break;
             case 'q':
-                console.log('covered');
                 cell[id].src = 'images/x.png';
                 break;
         }
-        console.log('out of switch');
     }
     if (event.button === 0 && picture(id) != 'f' && picture(id) != 'q') {
-        console.log('left click not flag not question mark');
         if (board[id] == 'mine') {
-            console.log('mine');
             loseSequence();
             for (i = 0; i < w * h; i++) {
                 if (board[i] == 'mine') {
@@ -154,7 +147,6 @@ function click(event) {
                 }
             }
         } else if (picture(id) == 'x') {
-            console.log(`reveal ${id}`);
             reveal(id);
         }
     }
@@ -165,7 +157,6 @@ function click(event) {
 }
 
 function reveal(index) {
-    // debugger
     if (board[index] != 'mine' && picture(index) == 'x') {
         revealed++;
         cell[index].src = 'images/' + board[index] + '.png';
@@ -189,108 +180,8 @@ function revealAdjacent(index) {
             ) {
             } else {
                 let idx = (y + row) * w + (x + col);
-                console.log(col, row, x, y, w, h, idx);
                 if (picture(idx) == 'x') reveal(idx);
             }
         }
     }
 }
-    // if (board[index] == 0) {
-    //     console.log('you clicked a 0');
-    //     switch () {
-    //         case (x > 0 && picture(index - 1) == 'x'):
-    //             console.log('cell left');
-    //             reveal(index - 1);
-    //         case (x < (w - 1) && picture(index + 1) == 'x'):
-    //             console.log('cell right');
-    //             reveal(index + 1);
-    //         case (y < (h - 1) && picture(index + w) == 'x'):
-    //             console.log('cell down');
-    //             reveal(index + w);
-    //         case (y > 0 && picture(index - w) == 'x'):
-    //             console.log('cell up');
-    //             reveal(index - w);
-    //         case (x > 0 && y > 0 && picture(index - w - 1) == 'x'):
-    //             console.log('cell up-left');
-    //             reveal(index - w - 1);
-    //         case (x < (w - 1) && y < (h - 1) && picture(index + w + 1) == 'x'):
-    //             console.log('cell down-right');
-    //             reveal(index + w + 1);
-    //         case (x > 0 && y < (h - 1) && y < (h - 1) && picture(index + w - 1) == 'x'):
-    //             console.log('cell down-left');
-    //             reveal(index + w - 1);
-    //         case (x < (w - 1) && y > 0 && y < (h - 1) && picture(index - w + 1) == 'x'):
-    //             console.log('cell up-right');
-    //             reveal (index - w + 1);
-    //     }
-
-    // if (board[index] == 0) {
-    //     console.log('you clicked a 0');
-    //     if (x > 0) {
-    //         console.log('cell left');
-    //         reveal(index - 1);
-    //     }
-    //     if (x < (w - 1)) {
-    //         console.log('cell right');
-    //         reveal(index + 1);
-    //     }
-    //     if (y < (h - 1)) {
-    //         console.log('cell down');
-    //         reveal(index + w);
-    //     }
-    //     if (y > 0) {
-    //         console.log('cell up');
-    //         reveal(index - w);
-    //     }
-    //     if (x > 0 && y > 0) {
-    //         console.log('cell up-left');
-    //         reveal(index - w - 1);
-    //     }                                                   
-    //     if (x < (w - 1) && y < (h - 1)) {
-    //         console.log('cell down-right');
-    //         reveal(index + w + 1);
-    //     }
-    //     if (x > 0 && y < (h - 1) && y < (h - 1)) {
-    //         console.log('cell down-left');
-    //         reveal(index + w - 1);
-    //     }
-    //     if (x < (w - 1) && y > 0 && y < (h - 1)) {
-    //         console.log('cell up-right');
-    //         reveal (index - w + 1);
-    //     }
-//>>>>>>original if statements<<<<<<<//
-    // if (board[index] == 0) {
-    //     console.log('you clicked a 0');
-    //     if (x > 0 && picture(index - 1) == 'x') {
-    //         console.log('cell left');
-    //         reveal(index - 1);
-    //     }
-    //     if (x < (w - 1) && picture(index + 1) == 'x') {
-    //         console.log('cell right');
-    //         reveal(index + 1);
-    //     }
-    //     if (y < (h - 1) && picture(index + w) == 'x') {
-    //         console.log('cell down');
-    //         reveal(index + w);
-    //     }
-    //     if (y > 0 && picture(index - w) == 'x') {
-    //         console.log('cell up');
-    //         reveal(index - w);
-    //     }
-    //     if (x > 0 && y > 0 && picture(index - w - 1) == 'x') {
-    //         console.log('cell up-left');
-    //         reveal(index - w - 1);
-    //     }                                                   
-    //     if (x < (w - 1) && y < (h - 1) && picture(index + w + 1) == 'x') {
-    //         console.log('cell down-right');
-    //         reveal(index + w + 1);
-    //     }
-    //     if (x > 0 && y < (h - 1) && y < (h - 1) && picture(index + w - 1) == 'x') {
-    //         console.log('cell down-left');
-    //         reveal(index + w - 1);
-    //     }
-    //     if (x < (w - 1) && y > 0 && y < (h - 1) && picture(index - w + 1) == 'x') {
-    //         console.log('cell up-right');
-    //         reveal (index - w + 1);
-    //     }
-    // }
