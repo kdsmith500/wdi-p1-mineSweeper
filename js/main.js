@@ -65,7 +65,7 @@ function loseSequence() { /*>>>lose sequence, waits 5 seconds so player can see 
 }
 
 function check(x1, y1) { /*>>>checks if the cell index it is called on exists in the game board, if it is it returns the value of the index in the board<<<*/
-    if ((x1 >= 0) && (y1 >= 0) && (x1 <= w) && (y1 <= h))
+    if ((x1 >= 0) && (y1 >= 0) && (x1 < w) && (y1 < h))
         return board[x1 + y1 * w];
 }
 
@@ -103,20 +103,39 @@ function createBoard() { /*>>>this in the initialization function that creates t
         }
     } while (placed < mines); /*>>>this is a nested for loop that runs as mines are placed and will iterate through every cell in the board<<<*/
     for (let x = 0; x < w; x++)
-        for (let y = 0; y < h + 1; y++) {
+        for (let y = 0; y < h; y++) {
             if (check(x, y) != 'mine') { /*>>>each mine it encounters will cause it to call the check function on every adjacent cell and decide either 1 or 0 and sum the total, that total then becomes what occupies that cell<<<*/
                 board[x + y * w] =
                     ((check(x, y + 1) == 'mine') | 0)
-                    + ((check(x - 1, y + 1) == 'mine') | 0)
-                    + ((check(x + 1, y + 1) == 'mine') | 0)
+                    + ((check(x - 1, y + 1) == 'mine' && x !== 0) | 0)
+                    + ((check(x + 1, y + 1) == 'mine' && x !== w) | 0)
                     + ((check(x, y - 1) == 'mine') | 0)
-                    + ((check(x - 1, y - 1) == 'mine') | 0)
-                    + ((check(x + 1, y - 1) == 'mine') | 0)
-                    + ((check(x - 1, y) == 'mine') | 0)
-                    + ((check(x + 1, y) == 'mine') | 0);
+                    + ((check(x - 1, y - 1) == 'mine' && x !== 0) | 0)
+                    + ((check(x + 1, y - 1) == 'mine' && x !== w) | 0)
+                    + ((check(x - 1, y) == 'mine' && x !== 0) | 0)
+                    + ((check(x + 1, y) == 'mine' && x !== w) | 0);
             }
         }
+    // return countMines();
 }
+
+// function countMines() {
+//     for (let x = 0; x < w; x++) {
+//         for (let y = 0; y < h; y++) {
+//             if (check(x, y) != 'mine') { /*>>>each mine it encounters will cause it to call the check function on every adjacent cell and decide either 1 or 0 and sum the total, that total then becomes what occupies that cell<<<*/
+//                 board[x + y * w] =
+//                     ((check(x, y + 1) == 'mine') | 0)
+//                     + ((check(x - 1, y + 1) == 'mine' && x !== 0) | 0)
+//                     + ((check(x + 1, y + 1) == 'mine' && x !== w) | 0)
+//                     + ((check(x, y - 1) == 'mine') | 0)
+//                     + ((check(x - 1, y - 1) == 'mine' && x !== 0) | 0)
+//                     + ((check(x + 1, y - 1) == 'mine' && x !== w) | 0)
+//                     + ((check(x - 1, y) == 'mine' && x !== 0) | 0)
+//                     + ((check(x + 1, y) == 'mine' && x !== w) | 0);
+//             }
+//         }
+//     }
+// }
 
 function click(event) { /*>>>this event listens for the mouse click on the particular cell clicked<<<*/
     let source = event.target;
@@ -170,7 +189,7 @@ function revealAdjacent(index) { /*>>>after the cell interacted with is revealed
     h = parseInt(h);
     let x = index % w; /*>>>these functions will turn any cell index into an x, y coorinate representing its position counting from 0<<<*/
     let y = Math.floor(index / w);
-    for (let col = -1; col <= 1; col++) { /*>>>this is a nexted for loop that will iterate through all cells adjacent to the cell that triggered the initial event<<<*/
+    for (let col = -1; col <= 1; col++) { /*>>>this is a nested for loop that will iterate through all cells adjacent to the cell that triggered the initial event<<<*/
         for (let row = -1; row <= 1; row++) {
             if ((col === 0 && row === 0) /*>>>if any of the postions exits outside of the board, return nothing<<<*/
                 || (col === -1 && x === 0)
